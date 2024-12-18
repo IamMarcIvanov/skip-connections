@@ -1,0 +1,143 @@
+NN_1(
+  (fc_1): Linear(in_features=107, out_features=107, bias=True)
+  (act_1): ReLU()
+  (fc_2): Linear(in_features=107, out_features=2, bias=True)
+)
+    def forward(self, x):
+        x = self.fc_1(x)
+        x = self.act_1(x)
+        x = self.fc_2(x)
+        return x
+
+      param count      
+┏━━━━━━━━━━━━━┳━━━━━━━┓
+┃ name        ┃ count ┃
+┡━━━━━━━━━━━━━╇━━━━━━━┩
+│ fc_1.weight │ 11449 │
+│ fc_1.bias   │ 107   │
+│ fc_2.weight │ 214   │
+│ fc_2.bias   │ 2     │
+└─────────────┴───────┘
+Total Number of Parameters: 11772
+
+Epoch 1 / 60 complete, Average Training Loss: 0.3680, Average Training Accuracy: 0.8286
+Epoch 1 / 60 complete, Average test Loss: 0.3313, Average test Accuracy: 0.8448
+Epoch 2 / 60 complete, Average Training Loss: 0.3212, Average Training Accuracy: 0.8518
+Epoch 2 / 60 complete, Average test Loss: 0.3253, Average test Accuracy: 0.8498
+Epoch 3 / 60 complete, Average Training Loss: 0.3114, Average Training Accuracy: 0.8554
+Epoch 3 / 60 complete, Average test Loss: 0.3205, Average test Accuracy: 0.8505
+Epoch 4 / 60 complete, Average Training Loss: 0.3051, Average Training Accuracy: 0.8572
+Epoch 4 / 60 complete, Average test Loss: 0.3211, Average test Accuracy: 0.8504
+Epoch 5 / 60 complete, Average Training Loss: 0.3009, Average Training Accuracy: 0.8585
+Epoch 5 / 60 complete, Average test Loss: 0.3194, Average test Accuracy: 0.8536
+Epoch 6 / 60 complete, Average Training Loss: 0.2982, Average Training Accuracy: 0.8627
+Epoch 6 / 60 complete, Average test Loss: 0.3208, Average test Accuracy: 0.8516
+Epoch 7 / 60 complete, Average Training Loss: 0.2953, Average Training Accuracy: 0.8635
+Epoch 7 / 60 complete, Average test Loss: 0.3210, Average test Accuracy: 0.8531
+Epoch 8 / 60 complete, Average Training Loss: 0.2925, Average Training Accuracy: 0.8639
+Epoch 8 / 60 complete, Average test Loss: 0.3225, Average test Accuracy: 0.8509
+Epoch 9 / 60 complete, Average Training Loss: 0.2904, Average Training Accuracy: 0.8645
+Epoch 9 / 60 complete, Average test Loss: 0.3233, Average test Accuracy: 0.8505
+Epoch 10 / 60 complete, Average Training Loss: 0.2879, Average Training Accuracy: 0.8667
+Epoch 10 / 60 complete, Average test Loss: 0.3256, Average test Accuracy: 0.8515
+Epoch 11 / 60 complete, Average Training Loss: 0.2865, Average Training Accuracy: 0.8677
+Epoch 11 / 60 complete, Average test Loss: 0.3271, Average test Accuracy: 0.8517
+Epoch 12 / 60 complete, Average Training Loss: 0.2848, Average Training Accuracy: 0.8669
+Epoch 12 / 60 complete, Average test Loss: 0.3301, Average test Accuracy: 0.8489
+Epoch 13 / 60 complete, Average Training Loss: 0.2844, Average Training Accuracy: 0.8683
+Epoch 13 / 60 complete, Average test Loss: 0.3279, Average test Accuracy: 0.8519
+Epoch 14 / 60 complete, Average Training Loss: 0.2831, Average Training Accuracy: 0.8682
+Epoch 14 / 60 complete, Average test Loss: 0.3300, Average test Accuracy: 0.8480
+Epoch 15 / 60 complete, Average Training Loss: 0.2813, Average Training Accuracy: 0.8685
+Epoch 15 / 60 complete, Average test Loss: 0.3335, Average test Accuracy: 0.8458
+Epoch 16 / 60 complete, Average Training Loss: 0.2800, Average Training Accuracy: 0.8691
+Epoch 16 / 60 complete, Average test Loss: 0.3314, Average test Accuracy: 0.8474
+Epoch 17 / 60 complete, Average Training Loss: 0.2786, Average Training Accuracy: 0.8711
+Epoch 17 / 60 complete, Average test Loss: 0.3330, Average test Accuracy: 0.8480
+Epoch 18 / 60 complete, Average Training Loss: 0.2785, Average Training Accuracy: 0.8705
+Epoch 18 / 60 complete, Average test Loss: 0.3356, Average test Accuracy: 0.8458
+Epoch 19 / 60 complete, Average Training Loss: 0.2761, Average Training Accuracy: 0.8715
+Epoch 19 / 60 complete, Average test Loss: 0.3378, Average test Accuracy: 0.8466
+Epoch 20 / 60 complete, Average Training Loss: 0.2756, Average Training Accuracy: 0.8730
+Epoch 20 / 60 complete, Average test Loss: 0.3397, Average test Accuracy: 0.8458
+Epoch 21 / 60 complete, Average Training Loss: 0.2746, Average Training Accuracy: 0.8713
+Epoch 21 / 60 complete, Average test Loss: 0.3393, Average test Accuracy: 0.8472
+Epoch 22 / 60 complete, Average Training Loss: 0.2736, Average Training Accuracy: 0.8727
+Epoch 22 / 60 complete, Average test Loss: 0.3427, Average test Accuracy: 0.8472
+Epoch 23 / 60 complete, Average Training Loss: 0.2739, Average Training Accuracy: 0.8733
+Epoch 23 / 60 complete, Average test Loss: 0.3466, Average test Accuracy: 0.8477
+Epoch 24 / 60 complete, Average Training Loss: 0.2713, Average Training Accuracy: 0.8753
+Epoch 24 / 60 complete, Average test Loss: 0.3469, Average test Accuracy: 0.8441
+Epoch 25 / 60 complete, Average Training Loss: 0.2698, Average Training Accuracy: 0.8742
+Epoch 25 / 60 complete, Average test Loss: 0.3452, Average test Accuracy: 0.8450
+Epoch 26 / 60 complete, Average Training Loss: 0.2696, Average Training Accuracy: 0.8745
+Epoch 26 / 60 complete, Average test Loss: 0.3482, Average test Accuracy: 0.8476
+Epoch 27 / 60 complete, Average Training Loss: 0.2671, Average Training Accuracy: 0.8757
+Epoch 27 / 60 complete, Average test Loss: 0.3475, Average test Accuracy: 0.8472
+Epoch 28 / 60 complete, Average Training Loss: 0.2668, Average Training Accuracy: 0.8770
+Epoch 28 / 60 complete, Average test Loss: 0.3500, Average test Accuracy: 0.8459
+Epoch 29 / 60 complete, Average Training Loss: 0.2659, Average Training Accuracy: 0.8771
+Epoch 29 / 60 complete, Average test Loss: 0.3570, Average test Accuracy: 0.8459
+Epoch 30 / 60 complete, Average Training Loss: 0.2659, Average Training Accuracy: 0.8761
+Epoch 30 / 60 complete, Average test Loss: 0.3573, Average test Accuracy: 0.8442
+Epoch 31 / 60 complete, Average Training Loss: 0.2648, Average Training Accuracy: 0.8768
+Epoch 31 / 60 complete, Average test Loss: 0.3569, Average test Accuracy: 0.8465
+Epoch 32 / 60 complete, Average Training Loss: 0.2637, Average Training Accuracy: 0.8769
+Epoch 32 / 60 complete, Average test Loss: 0.3591, Average test Accuracy: 0.8460
+Epoch 33 / 60 complete, Average Training Loss: 0.2637, Average Training Accuracy: 0.8767
+Epoch 33 / 60 complete, Average test Loss: 0.3625, Average test Accuracy: 0.8450
+Epoch 34 / 60 complete, Average Training Loss: 0.2634, Average Training Accuracy: 0.8784
+Epoch 34 / 60 complete, Average test Loss: 0.3662, Average test Accuracy: 0.8420
+Epoch 35 / 60 complete, Average Training Loss: 0.2609, Average Training Accuracy: 0.8771
+Epoch 35 / 60 complete, Average test Loss: 0.3650, Average test Accuracy: 0.8440
+Epoch 36 / 60 complete, Average Training Loss: 0.2613, Average Training Accuracy: 0.8786
+Epoch 36 / 60 complete, Average test Loss: 0.3662, Average test Accuracy: 0.8428
+Epoch 37 / 60 complete, Average Training Loss: 0.2597, Average Training Accuracy: 0.8794
+Epoch 37 / 60 complete, Average test Loss: 0.3679, Average test Accuracy: 0.8429
+Epoch 38 / 60 complete, Average Training Loss: 0.2602, Average Training Accuracy: 0.8793
+Epoch 38 / 60 complete, Average test Loss: 0.3713, Average test Accuracy: 0.8431
+Epoch 39 / 60 complete, Average Training Loss: 0.2590, Average Training Accuracy: 0.8800
+Epoch 39 / 60 complete, Average test Loss: 0.3705, Average test Accuracy: 0.8436
+Epoch 40 / 60 complete, Average Training Loss: 0.2584, Average Training Accuracy: 0.8802
+Epoch 40 / 60 complete, Average test Loss: 0.3723, Average test Accuracy: 0.8428
+Epoch 41 / 60 complete, Average Training Loss: 0.2564, Average Training Accuracy: 0.8815
+Epoch 41 / 60 complete, Average test Loss: 0.3734, Average test Accuracy: 0.8442
+Epoch 42 / 60 complete, Average Training Loss: 0.2557, Average Training Accuracy: 0.8817
+Epoch 42 / 60 complete, Average test Loss: 0.3784, Average test Accuracy: 0.8421
+Epoch 43 / 60 complete, Average Training Loss: 0.2564, Average Training Accuracy: 0.8803
+Epoch 43 / 60 complete, Average test Loss: 0.3809, Average test Accuracy: 0.8444
+Epoch 44 / 60 complete, Average Training Loss: 0.2547, Average Training Accuracy: 0.8813
+Epoch 44 / 60 complete, Average test Loss: 0.3835, Average test Accuracy: 0.8398
+Epoch 45 / 60 complete, Average Training Loss: 0.2535, Average Training Accuracy: 0.8813
+Epoch 45 / 60 complete, Average test Loss: 0.3813, Average test Accuracy: 0.8447
+Epoch 46 / 60 complete, Average Training Loss: 0.2538, Average Training Accuracy: 0.8807
+Epoch 46 / 60 complete, Average test Loss: 0.3862, Average test Accuracy: 0.8426
+Epoch 47 / 60 complete, Average Training Loss: 0.2538, Average Training Accuracy: 0.8829
+Epoch 47 / 60 complete, Average test Loss: 0.3881, Average test Accuracy: 0.8424
+Epoch 48 / 60 complete, Average Training Loss: 0.2518, Average Training Accuracy: 0.8825
+Epoch 48 / 60 complete, Average test Loss: 0.3844, Average test Accuracy: 0.8424
+Epoch 49 / 60 complete, Average Training Loss: 0.2531, Average Training Accuracy: 0.8820
+Epoch 49 / 60 complete, Average test Loss: 0.3885, Average test Accuracy: 0.8405
+Epoch 50 / 60 complete, Average Training Loss: 0.2508, Average Training Accuracy: 0.8831
+Epoch 50 / 60 complete, Average test Loss: 0.3948, Average test Accuracy: 0.8426
+Epoch 51 / 60 complete, Average Training Loss: 0.2501, Average Training Accuracy: 0.8831
+Epoch 51 / 60 complete, Average test Loss: 0.3932, Average test Accuracy: 0.8410
+Epoch 52 / 60 complete, Average Training Loss: 0.2506, Average Training Accuracy: 0.8837
+Epoch 52 / 60 complete, Average test Loss: 0.3970, Average test Accuracy: 0.8409
+Epoch 53 / 60 complete, Average Training Loss: 0.2505, Average Training Accuracy: 0.8827
+Epoch 53 / 60 complete, Average test Loss: 0.3944, Average test Accuracy: 0.8429
+Epoch 54 / 60 complete, Average Training Loss: 0.2496, Average Training Accuracy: 0.8837
+Epoch 54 / 60 complete, Average test Loss: 0.4034, Average test Accuracy: 0.8364
+Epoch 55 / 60 complete, Average Training Loss: 0.2483, Average Training Accuracy: 0.8840
+Epoch 55 / 60 complete, Average test Loss: 0.3972, Average test Accuracy: 0.8407
+Epoch 56 / 60 complete, Average Training Loss: 0.2470, Average Training Accuracy: 0.8852
+Epoch 56 / 60 complete, Average test Loss: 0.4043, Average test Accuracy: 0.8382
+Epoch 57 / 60 complete, Average Training Loss: 0.2488, Average Training Accuracy: 0.8855
+Epoch 57 / 60 complete, Average test Loss: 0.4043, Average test Accuracy: 0.8404
+Epoch 58 / 60 complete, Average Training Loss: 0.2464, Average Training Accuracy: 0.8870
+Epoch 58 / 60 complete, Average test Loss: 0.4030, Average test Accuracy: 0.8428
+Epoch 59 / 60 complete, Average Training Loss: 0.2472, Average Training Accuracy: 0.8856
+Epoch 59 / 60 complete, Average test Loss: 0.4053, Average test Accuracy: 0.8423
+Epoch 60 / 60 complete, Average Training Loss: 0.2461, Average Training Accuracy: 0.8856
+Epoch 60 / 60 complete, Average test Loss: 0.4079, Average test Accuracy: 0.8375
+saved best model
