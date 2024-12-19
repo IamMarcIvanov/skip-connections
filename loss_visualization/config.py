@@ -1,11 +1,11 @@
+import torch
+
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
 class Config:
-    skip_nn_path: str = (
-        r"/mnt/windows/Users/lordh/Documents/LibraryOfBabel/Projects/skip_connections/runs/0014_SkipNN_1_bsz-128_lr-0.001_ep-200-desc-.pth"
-    )
-    basic_nn_path: str = (
-        r"/mnt/windows/Users/lordh/Documents/LibraryOfBabel/Projects/skip_connections/runs/0008_NN_1_bsz-128_lr-0.01_ep-60-desc-.pth"
-    )
+    nn_path_1: str = r"./runs/0017_NN_1_bsz-32_lr-0.001_ep-200-desc-.pth"
+    nn_path_2: str = r"./runs/0016_NN_1_bsz-1024_lr-0.001_ep-200-desc-.pth"
+    device = torch.device("cpu")
+    num_points = 2000

@@ -6,6 +6,9 @@ from contextlib import redirect_stdout
 import torch
 from tqdm import tqdm
 
+import copy
+import pickle
+
 from tabular.config import Config
 from tabular.util import Util
 from tabular.skip_nn import SkipNN_1
@@ -51,12 +54,15 @@ def eval_one_epoch():
 def train_model():
     print()
     train_loss, test_loss, train_acc, test_acc = [], [], [], []
+    weights = []
     best_acc, best_model_dict = 0, dict()
     for epoch in tqdm(range(config.num_epochs)):
         model.train(True)
         avg_epoch_loss, avg_epoch_acc = train_one_epoch()
         train_loss.append(avg_epoch_loss)
         train_acc.append(avg_epoch_acc)
+        if config.capture_weights:
+            weights.append(copy.deepcopy(model.state_dict()))
         print(
             f"Epoch {epoch + 1} / {config.num_epochs} complete, Average Training Loss: {avg_epoch_loss:.4f}, Average Training Accuracy: {avg_epoch_acc:.4f}"
         )
@@ -75,6 +81,9 @@ def train_model():
     if config.save_model:
         torch.save(best_model_dict, util.get_file_path(file_type=".pth"))
         print("saved best model")
+    if config.capture_weights:
+        with open(util.get_file_path(file_type=".pkl"), "wb") as weights_file:
+            pickle.dump(weights, weights_file)
     return train_loss, test_loss, train_acc, test_acc, best_acc
 
 
@@ -82,14 +91,14 @@ def plot_graphs():
     x = list(range(len(train_acc)))
     fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 6))
     # accuracy
-    ax1.plot(x, train_acc, label="training accuracy")
-    ax1.plot(x, test_acc, label="test accuracy")
+    ax1.plot(x, train_acc, label="train acc {max(train_acc):.5f} at {train_acc.index(max(train_acc))}")
+    ax1.plot(x, test_acc, label="test acc {max(test_acc):.5f} at {test_acc.index(max(test_acc))}")
     ax1.set_xlabel("epoch number")
     ax1.set_ylabel("accuracy")
     ax1.set_title(f"Plot of accuracy vs epoch, best acc = {best_acc}")
     ax1.legend()  # loss
-    ax2.plot(x, train_loss, label="training loss")
-    ax2.plot(x, test_loss, label="test loss")
+    ax2.plot(x, train_loss, label="train loss {min(train_loss):.5f} at {train_loss.index(min(train_loss))}")
+    ax2.plot(x, test_loss, label="test loss {min(test_loss):.5f} at {test_loss.index(min(test_loss))}")
     ax2.set_xlabel("epoch number")
     ax2.set_ylabel("loss")
     ax2.set_title("Plot of loss vs epoch")
@@ -100,11 +109,16 @@ def plot_graphs():
 if __name__ == "__main__":
     config = Config()
     util = Util(config)
+    print(f'using {config.device}')
 
     model = globals()[config.model_name](config).to(config.device)
     model.apply(util.init_weights)
     util.plot_architecture(path=util.get_file_path(file_type=""), model=model)
-    optimizer = optim.Adam(model.parameters(), lr=config.lr)
+    optimizer = optim.Adam(
+        model.parameters(),
+        lr=config.lr,
+        weight_decay=config.weight_decay if config.use_weight_decay else 0,
+    )
     criterion = nn.CrossEntropyLoss()
     with open(util.get_file_path(file_type=".txt"), "w") as f:
         with redirect_stdout(f):

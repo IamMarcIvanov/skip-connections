@@ -2,7 +2,7 @@ import torch.nn as nn
 
 
 class NN_1(nn.Module):
-    def __init__(self):
+    def __init__(self, config):
         super().__init__()
         self.fc_1 = nn.Linear(in_features=107, out_features=107)
         self.act_1 = nn.ReLU()

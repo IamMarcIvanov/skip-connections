@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from rich.pretty import pprint
 import torch
 import torch.nn as nn
 from tqdm import tqdm
@@ -17,18 +18,27 @@ def set_model_weights(model, theta_init, theta_final, alpha):
         param.data = nn.parameter.Parameter(value)
 
 
+def get_weights_from_path(path):
+    data = torch.load(path, weights_only=True, map_location=config.device)
+    return dict(data)
+
+
 def get_loss(model, alpha_values, theta_init, theta_final):
     criterion = nn.CrossEntropyLoss()
     train_set = SalaryDataset(tabular_config, train=True)
-    loss_values = []
+    test_set = SalaryDataset(tabular_config, train=False)
+    train_loss_values, test_loss_values = [], []
     for alpha in tqdm(alpha_values):
         set_model_weights(
             model=model, alpha=alpha, theta_init=theta_init, theta_final=theta_final
         )
-        output = model(torch.tensor(train_set.data.values, dtype=torch.float32))
-        loss = criterion(output, torch.tensor(train_set.labels, dtype=torch.long))
-        loss_values.append(loss)
-    return loss_values
+        train_output = model(torch.tensor(train_set.data.values, dtype=torch.float32))
+        train_loss = criterion(train_output, torch.tensor(train_set.labels, dtype=torch.long))
+        train_loss_values.append(train_loss)
+        test_output = model(torch.tensor(test_set.data.values, dtype=torch.float32))
+        test_loss = criterion(test_output, torch.tensor(test_set.labels, dtype=torch.long))
+        test_loss_values.append(test_loss)
+    return train_loss_values, test_loss_values
 
 
 def plot_graph(alpha, loss, label):
@@ -41,33 +51,29 @@ if __name__ == "__main__":
     util = Util(tabular_config)
 
     with torch.no_grad():
-        alpha_values = torch.linspace(0, 1, 200)
-        basic_model = NN_1()
-        skip_model = SkipNN_1(tabular_config)
-        theta_init, theta_final = dict(), dict()
-        for name, param in basic_model.named_parameters():
-            theta_init[name] = nn.parameter.Parameter(3 * torch.rand(param.shape) + 1)
-            theta_final[name] = nn.parameter.Parameter(3 * torch.rand(param.shape) + 1)
+        alpha_values = torch.linspace(-0.5, 1.5, config.num_points)
+        model = NN_1(tabular_config)
+        theta_init = get_weights_from_path(path=config.nn_path_1)
+        theta_final = get_weights_from_path(path=config.nn_path_2)
+        # for name, param in basic_model.named_parameters():
+        #     theta_init[name] = nn.parameter.Parameter(3 * torch.rand(param.shape) + 1)
+        #     theta_final[name] = nn.parameter.Parameter(3 * torch.rand(param.shape) + 1)
+        train_loss, test_loss = get_loss(
+            model=model,
+            alpha_values=alpha_values,
+            theta_init=theta_init,
+            theta_final=theta_final,
+        )
         fig, ax = plt.subplots(figsize=(10, 6))
         plot_graph(
             alpha_values,
-            get_loss(
-                model=basic_model,
-                alpha_values=alpha_values,
-                theta_init=theta_init,
-                theta_final=theta_final,
-            ),
-            label="basic",
+            train_loss,
+            label="train",
         )
         plot_graph(
             alpha_values,
-            get_loss(
-                model=skip_model,
-                alpha_values=alpha_values,
-                theta_init=theta_init,
-                theta_final=theta_final,
-            ),
-            label="skip",
+            test_loss,
+            label="test",
         )
         plt.legend()
         plt.show()

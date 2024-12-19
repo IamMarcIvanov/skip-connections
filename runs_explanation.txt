@@ -1,0 +1,35 @@
+run 0018:
+- this is for checking how the norm of the weights changes with epoch when we use small and large batch sizes
+- also to check the distribution of weights 
+- this is for normal NN, 128 batch size (as the small batch size) since 32 was taking too long
+- epochs is reduced to 100 since there is no need to go to 200 since we are seeing overfitting very very early (low 2 digit number of epochs)
+
+run 0019:
+- continues with 0018 project just changing batch size from 128 to 8192
+- this is for checking how the norm of the weights changes with epoch when we use small and large batch sizes
+- also to check the distribution of weights 
+- this is for normal NN, 8192 batch size (as the small batch size) since that is what is in the paper "Visualizing the Loss Landscape of NN" by Li et. al.
+- epochs is reduced to 100 since there is no need to go to 200 since we are seeing overfitting very very early (low 2 digit number of epochs)
+
+l2_norm_basic_nn_runs_18_19.png:
+A plot of how the L2 norms vary with epoch for batch sizes 128 and 8192 for basic nn taken from runs 18 and 19. No weight decay.
+
+wt_dist_bsz_128_8192_ep_100_basic_nn_dec-0.png:
+A histogram of weights for basic nn after last epoch for batch sizes 128 and 8192.
+
+run 0020:
+- continues with 0018 project just adding a weight decay of 5e-4 and batch size of 8192
+- this is for checking how the norm of the weights changes with epoch when we use small and large batch sizes
+- also to check the distribution of weights 
+- this is for normal NN, 8192 batch size (as the small batch size) since that is what is in the paper "Visualizing the Loss Landscape of NN" by Li et. al.
+- epochs is reduced to 100 since there is no need to go to 200 since we are seeing overfitting very very early (low 2 digit number of epochs)
+
+run 0021:
+- continues with 0018 project just adding a weight decay of 5e-4 and batch size of 128
+- this is for checking how the norm of the weights changes with epoch when we use small and large batch sizes
+- also to check the distribution of weights 
+- this is for normal NN, 128 batch size (as the small batch size) since that is what is in the paper "Visualizing the Loss Landscape of NN" by Li et. al.
+- epochs is reduced to 100 since there is no need to go to 200 since we are seeing overfitting very very early (low 2 digit number of epochs)
+
+runs 18, 19, 20, 21 were replaced with 26, 27, 28, 29
+
